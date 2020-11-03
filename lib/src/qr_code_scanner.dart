@@ -11,6 +11,8 @@ class QRView extends StatefulWidget {
     @required Key key,
     @required this.onQRViewCreated,
     this.overlay,
+    this.title = '',
+    this.subtitle = '',
   })  : assert(key != null),
         assert(onQRViewCreated != null),
         super(key: key);
@@ -18,6 +20,8 @@ class QRView extends StatefulWidget {
   final QRViewCreatedCallback onQRViewCreated;
 
   final ShapeBorder overlay;
+  final title;
+  final subtitle;
 
   @override
   State<StatefulWidget> createState() => _QRViewState();
@@ -37,6 +41,35 @@ class _QRViewState extends State<QRView> {
           )
         else
           Container(),
+        Align(
+          alignment: Alignment(0, -0.8),
+          child: Container(
+              child: Text(
+            widget.title,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontFamily: 'SofiaPro',
+              fontWeight: FontWeight.bold,
+              package: 'qr_code_scanner',
+            ),
+          )),
+        ),
+        Align(
+          alignment: Alignment(0, -0.65),
+          child: Container(
+              child: Text(
+            widget.subtitle,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              fontFamily: 'SofiaPro',
+              package: 'qr_code_scanner',
+            ),
+          )),
+        ),
       ],
     );
   }
